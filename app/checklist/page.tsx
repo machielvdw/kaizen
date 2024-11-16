@@ -25,6 +25,7 @@ export default function CheckListPage() {
   const router = useRouter();
   const [reviewerName, setReviewerName] = useState("");
   const [engineerName, setEngineerName] = useState("Machiel");
+  const [isLoading, setIsLoading] = useState(false);
 
   const [categories, setCategories] = useState<Category[]>([
     {
@@ -154,6 +155,7 @@ export default function CheckListPage() {
   ]);
 
   const handleSubmit = async () => {
+    setIsLoading(true);
     const feedback = {
       reviewerName,
       engineerName,
@@ -181,6 +183,8 @@ export default function CheckListPage() {
     } catch (error) {
       console.error("Error submitting data:", error);
       alert("An unexpected error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -215,8 +219,12 @@ export default function CheckListPage() {
           </div>
         </div>
         <Checklist categories={categories} setCategories={setCategories} />
-        <Button onClick={handleSubmit} className="w-full mt-4">
-          Submit
+        <Button
+          onClick={handleSubmit}
+          className="w-full mt-4"
+          disabled={isLoading}
+        >
+          {isLoading ? "Submitting..." : "Submit"}
         </Button>
       </main>
     </div>
