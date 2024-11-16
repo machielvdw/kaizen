@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { ModeToggle } from "@/components/mode-toggle";
+import { Scale } from "lucide-react";
 
 export default function Navbar() {
   return (
@@ -11,6 +12,7 @@ export default function Navbar() {
         <div className="flex items-center space-x-4 sm:space-x-6">
           <Link href="/" className="flex items-center space-x-2">
             <span className="font-bold">Kaizen</span>
+            <Scale />
           </Link>
           <nav className="flex items-center space-x-4 sm:space-x-6 text-sm font-medium">
             <Link href="/">Info</Link>

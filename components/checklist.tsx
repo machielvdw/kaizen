@@ -2,6 +2,7 @@
 
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 type Question = {
   id: string;
@@ -44,44 +45,67 @@ export default function Checklist({
   };
 
   const options = [
-    { value: "1", label: "1. Needs Improvement" },
-    { value: "2", label: "2. Infrequently Applied" },
-    { value: "3", label: "3. Developing" },
-    { value: "4", label: "4. Effective" },
-    { value: "5", label: "5. Mastered" },
+    { value: "1", label: "1. Needs Improvement: Rarely applied in work" },
+    {
+      value: "2",
+      label:
+        "2. Infrequently Applied: Sometimes incorporated but not consistent",
+    },
+    {
+      value: "3",
+      label: "3. Developing: Showing improvement and reasonably consistent",
+    },
+    {
+      value: "4",
+      label: "4. Effective: Frequently applied with good outcomes",
+    },
+    {
+      value: "5",
+      label: "5. Mastered: Consistently applied, highly effective in this area",
+    },
   ];
 
   return (
     <div className="w-full max-w-3xl mx-auto">
       {categories.map((category) => (
         <div key={category.id} className="mb-8">
-          <h2 className="text-xl font-semibold mb-4">{category.title}</h2>
-          {category.questions.map((question) => (
-            <div key={question.id} className="mb-6">
-              <p className="mb-2 font-medium">{question.text}</p>
-              <RadioGroup
-                value={question.value.toString()}
-                onValueChange={(newValue) =>
-                  handleValueChange(category.id, question.id, newValue)
-                }
-              >
-                {options.map((option) => (
-                  <div
-                    key={option.value}
-                    className="flex items-center space-x-2 mb-1"
+          <Card>
+            <CardHeader>
+              <CardTitle>{category.title}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {category.questions.map((question) => (
+                <div key={question.id} className="mb-6">
+                  <p className="mb-4 font-medium">{question.text}</p>
+                  <RadioGroup
+                    value={question.value.toString()}
+                    onValueChange={(newValue) =>
+                      handleValueChange(category.id, question.id, newValue)
+                    }
                   >
-                    <RadioGroupItem
-                      value={option.value}
-                      id={`q${question.id}-${option.value}`}
-                    />
-                    <Label htmlFor={`q${question.id}-${option.value}`}>
-                      {option.label}
-                    </Label>
-                  </div>
-                ))}
-              </RadioGroup>
-            </div>
-          ))}
+                    {options.map((option) => {
+                      const [boldPart, normalPart] = option.label.split(": ");
+                      return (
+                        <div
+                          key={option.value}
+                          className="flex items-center space-x-2 mb-1"
+                        >
+                          <RadioGroupItem
+                            value={option.value}
+                            id={`q${question.id}-${option.value}`}
+                          />
+                          <Label htmlFor={`q${question.id}-${option.value}`}>
+                            <span className="font-bold">{boldPart}:</span>{" "}
+                            {normalPart}
+                          </Label>
+                        </div>
+                      );
+                    })}
+                  </RadioGroup>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
         </div>
       ))}
     </div>
