@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 import { ThemeProvider } from "@/components/theme-provider";
-import { ModeToggle } from "@/components/mode-toggle";
+import Navbar from "@/components/navbar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ModeToggle />
+        <Navbar />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

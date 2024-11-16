@@ -1,79 +1,89 @@
 "use client";
 
-import { useState } from "react";
-import { Slider } from "@/components/ui/slider";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 
 type Question = {
-  id: number;
+  id: string;
   text: string;
   value: number;
 };
 
-export default function Checklist() {
-  const [questions, setQuestions] = useState<Question[]>([
-    { id: 1, text: "How well did you sleep last night?", value: 50 },
-    { id: 2, text: "How productive were you today?", value: 50 },
-    { id: 3, text: "How would you rate your stress level?", value: 50 },
-    {
-      id: 4,
-      text: "How satisfied are you with your work-life balance?",
-      value: 50,
-    },
-    { id: 5, text: "How healthy were your eating habits today?", value: 50 },
-  ]);
+type Category = {
+  id: string;
+  title: string;
+  questions: Question[];
+};
 
-  const handleSliderChange = (id: number, newValue: number[]) => {
-    setQuestions(
-      questions.map((q) => (q.id === id ? { ...q, value: newValue[0] } : q))
+type ChecklistProps = {
+  categories: Category[];
+  setCategories: React.Dispatch<React.SetStateAction<Category[]>>;
+};
+
+export default function Checklist({
+  categories,
+  setCategories,
+}: ChecklistProps) {
+  const handleValueChange = (
+    categoryId: string,
+    questionId: string,
+    newValue: string
+  ) => {
+    setCategories((prevCategories) =>
+      prevCategories.map((category) =>
+        category.id === categoryId
+          ? {
+              ...category,
+              questions: category.questions.map((q) =>
+                q.id === questionId ? { ...q, value: parseInt(newValue) } : q
+              ),
+            }
+          : category
+      )
     );
   };
 
-  const handleSubmit = () => {
-    console.log("Submitted answers:", questions);
-    // Here you would typically send this data to a server
-  };
+  const options = [
+    { value: "1", label: "1. Needs Improvement" },
+    { value: "2", label: "2. Infrequently Applied" },
+    { value: "3", label: "3. Developing" },
+    { value: "4", label: "4. Effective" },
+    { value: "5", label: "5. Mastered" },
+  ];
 
   return (
-    <Card className="w-full max-w-3xl mx-auto">
-      <CardHeader>
-        <CardTitle>Daily Check-in</CardTitle>
-        <CardDescription>
-          Please answer the following questions using the sliders.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        {questions.map((question) => (
-          <div key={question.id} className="mb-6">
-            <p className="mb-2 font-medium">{question.text}</p>
-            <Slider
-              min={0}
-              max={100}
-              step={1}
-              value={[question.value]}
-              onValueChange={(newValue) =>
-                handleSliderChange(question.id, newValue)
-              }
-              className="mb-1"
-            />
-            <div className="flex justify-between text-sm text-gray-500">
-              <span>Not at all</span>
-              <span>Neutral</span>
-              <span>Completely</span>
+    <div className="w-full max-w-3xl mx-auto">
+      {categories.map((category) => (
+        <div key={category.id} className="mb-8">
+          <h2 className="text-xl font-semibold mb-4">{category.title}</h2>
+          {category.questions.map((question) => (
+            <div key={question.id} className="mb-6">
+              <p className="mb-2 font-medium">{question.text}</p>
+              <RadioGroup
+                value={question.value.toString()}
+                onValueChange={(newValue) =>
+                  handleValueChange(category.id, question.id, newValue)
+                }
+              >
+                {options.map((option) => (
+                  <div
+                    key={option.value}
+                    className="flex items-center space-x-2 mb-1"
+                  >
+                    <RadioGroupItem
+                      value={option.value}
+                      id={`q${question.id}-${option.value}`}
+                    />
+                    <Label htmlFor={`q${question.id}-${option.value}`}>
+                      {option.label}
+                    </Label>
+                  </div>
+                ))}
+              </RadioGroup>
             </div>
-          </div>
-        ))}
-        <Button onClick={handleSubmit} className="w-full mt-4">
-          Submit
-        </Button>
-      </CardContent>
-    </Card>
+          ))}
+        </div>
+      ))}
+    </div>
   );
 }
