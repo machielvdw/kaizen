@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -20,6 +22,7 @@ type Category = {
 };
 
 export default function CheckListPage() {
+  const router = useRouter();
   const [reviewerName, setReviewerName] = useState("");
   const [engineerName, setEngineerName] = useState("Machiel");
 
@@ -45,12 +48,12 @@ export default function CheckListPage() {
         },
         {
           id: "1.4",
-          text: "To what degree does the engineer write code that is simple, logical, and easy to understand, even if it was complex to create?",
+          text: "To what degree does the engineer write code that is simple, logical, and easy to understand?",
           value: 3,
         },
         {
           id: "1.5",
-          text: "How effectively does the engineer prioritize adequate testing to ensure code reliability without over-testing?",
+          text: "How effectively does the engineer prioritize adequate testing?",
           value: 3,
         },
       ],
@@ -168,14 +171,16 @@ export default function CheckListPage() {
 
       const result = await response.json();
 
-      if (result.success) {
+      if (response.ok && result.success) {
         console.log("Data saved successfully:", result.insertedId);
-        // Optionally, reset the form or navigate to a success page
+        router.push("/thank-you");
       } else {
         console.error("Error saving data:", result.error);
+        alert("There was an error submitting your feedback. Please try again.");
       }
     } catch (error) {
       console.error("Error submitting data:", error);
+      alert("An unexpected error occurred. Please try again.");
     }
   };
 
