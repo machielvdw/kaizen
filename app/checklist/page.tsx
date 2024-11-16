@@ -1,79 +1,27 @@
-"use client";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
-import { useState } from "react";
-import { Slider } from "@/components/ui/slider";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-
-type Question = {
-  id: number;
-  text: string;
-  value: number;
-};
-
-export default function Component() {
-  const [questions, setQuestions] = useState<Question[]>([
-    { id: 1, text: "How well did you sleep last night?", value: 50 },
-    { id: 2, text: "How productive were you today?", value: 50 },
-    { id: 3, text: "How would you rate your stress level?", value: 50 },
-    {
-      id: 4,
-      text: "How satisfied are you with your work-life balance?",
-      value: 50,
-    },
-    { id: 5, text: "How healthy were your eating habits today?", value: 50 },
-  ]);
-
-  const handleSliderChange = (id: number, newValue: number[]) => {
-    setQuestions(
-      questions.map((q) => (q.id === id ? { ...q, value: newValue[0] } : q))
-    );
-  };
-
-  const handleSubmit = () => {
-    console.log("Submitted answers:", questions);
-    // Here you would typically send this data to a server
-  };
-
+export default function CheckListPage() {
   return (
-    <Card className="w-full max-w-3xl mx-auto">
-      <CardHeader>
-        <CardTitle>Daily Check-in</CardTitle>
-        <CardDescription>
-          Please answer the following questions using the sliders.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        {questions.map((question) => (
-          <div key={question.id} className="mb-6">
-            <p className="mb-2 font-medium">{question.text}</p>
-            <Slider
-              min={0}
-              max={100}
-              step={1}
-              value={[question.value]}
-              onValueChange={(newValue) =>
-                handleSliderChange(question.id, newValue)
-              }
-              className="mb-1"
-            />
-            <div className="flex justify-between text-sm text-gray-500">
-              <span>Not at all</span>
-              <span>Neutral</span>
-              <span>Completely</span>
+    <div className="min-h-screen py-8 px-72 pb-20 gap-16">
+      <main className="flex flex-col gap-8 row-start-2 items-start">
+        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl flex-auto">
+          Checklist
+        </h1>
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <div className="flex gap-4">
+            <div>
+              <Label htmlFor="reviewer">You</Label>
+              <Input type="text" id="reviewer" placeholder="Your Name" />
+            </div>
+            <div>
+              <Label htmlFor="developer">Developer</Label>
+              <Input type="text" id="developer" placeholder="Developers Name" />
             </div>
           </div>
-        ))}
-        <Button onClick={handleSubmit} className="w-full mt-4">
-          Submit
-        </Button>
-      </CardContent>
-    </Card>
+        </div>
+      </main>
+      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"></footer>
+    </div>
   );
 }
