@@ -9,9 +9,9 @@ export default function Home() {
           Kaizen
         </h1>
         <blockquote className="mt-6 border-l-2 pl-6 italic">
-          (Japanese: 改善, "improvement") is a concept referring to business
-          activities that continuously improve all functions and involve all
-          employees from the CEO to the assembly line workers.
+          (Japanese: 改善, &quot;improvement&quot;) is a concept referring to
+          business activities that continuously improve all functions and
+          involve all employees from the CEO to the assembly line workers.
         </blockquote>
         <h2 className="mt-6 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
           Background: Understanding the Key Areas of Effective Engineering
@@ -168,7 +168,7 @@ export default function Home() {
         <ul className="my-6 ml-6 list-disc mt-2">
           <li>
             <strong>Ownership of Work</strong>: Taking full responsibility for
-            one's tasks and their outcomes is a hallmark of an effective
+            one&apos;s tasks and their outcomes is a hallmark of an effective
             engineer. They acknowledge successes and failures alike, learn from
             mistakes, and are committed to seeing projects through to
             completion.
@@ -202,8 +202,8 @@ export default function Home() {
           Next Steps
         </h2>
         <p className="leading-7 mt-2">
-          The following checklist can help assess the your engineer's current
-          habits and identify areas for improvement. The results are a
+          The following checklist can help assess the your engineer&apos;s
+          current habits and identify areas for improvement. The results are a
           reflection of the individual, the environment, and the company as a
           whole.{" "}
         </p>

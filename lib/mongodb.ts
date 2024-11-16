@@ -8,7 +8,6 @@ const uri = process.env.MONGODB_URI;
 const options = {};
 
 let client: MongoClient;
-let clientPromise: Promise<MongoClient>;
 
 declare global {
   // eslint-disable-next-line no-var
@@ -20,6 +19,6 @@ if (!global._mongoClientPromise) {
   global._mongoClientPromise = client.connect();
 }
 
-clientPromise = global._mongoClientPromise;
+const clientPromise: Promise<MongoClient> = global._mongoClientPromise;
 
 export default clientPromise;
