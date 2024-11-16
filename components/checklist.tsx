@@ -3,6 +3,7 @@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
 
 type Question = {
   id: string;
@@ -14,6 +15,7 @@ type Category = {
   id: string;
   title: string;
   questions: Question[];
+  comment?: string;
 };
 
 type ChecklistProps = {
@@ -39,6 +41,16 @@ export default function Checklist({
                 q.id === questionId ? { ...q, value: parseInt(newValue) } : q
               ),
             }
+          : category
+      )
+    );
+  };
+
+  const handleCommentChange = (categoryId: string, newComment: string) => {
+    setCategories((prevCategories) =>
+      prevCategories.map((category) =>
+        category.id === categoryId
+          ? { ...category, comment: newComment }
           : category
       )
     );
@@ -104,6 +116,16 @@ export default function Checklist({
                   </RadioGroup>
                 </div>
               ))}
+              <div className="mb-6">
+                <Textarea
+                  id={`comments-${category.id}`}
+                  placeholder="Do you have any additional comments on this category?"
+                  value={category.comment || ""}
+                  onChange={(e) =>
+                    handleCommentChange(category.id, e.target.value)
+                  }
+                />
+              </div>
             </CardContent>
           </Card>
         </div>

@@ -16,6 +16,7 @@ type Category = {
   id: string;
   title: string;
   questions: Question[];
+  comment?: string;
 };
 
 export default function CheckListPage() {
