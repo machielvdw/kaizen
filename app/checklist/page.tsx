@@ -21,7 +21,7 @@ type Category = {
 
 export default function CheckListPage() {
   const [reviewerName, setReviewerName] = useState("");
-  const [developerName, setDeveloperName] = useState("");
+  const [engineerName, setEngineerName] = useState("Machiel");
 
   const [categories, setCategories] = useState<Category[]>([
     {
@@ -153,7 +153,7 @@ export default function CheckListPage() {
   const handleSubmit = async () => {
     const feedback = {
       reviewerName,
-      developerName,
+      engineerName,
       categories,
     };
 
@@ -188,7 +188,7 @@ export default function CheckListPage() {
         <div className="w-full max-w-3xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="reviewer">Your Name</Label>
+              <Label htmlFor="reviewer">You</Label>
               <Input
                 type="text"
                 id="reviewer"
@@ -198,13 +198,13 @@ export default function CheckListPage() {
               />
             </div>
             <div>
-              <Label htmlFor="developer">Developer's Name</Label>
+              <Label htmlFor="engineer">Engineer</Label>
               <Input
                 type="text"
-                id="developer"
-                placeholder="Developer's Name"
-                value={developerName}
-                onChange={(e) => setDeveloperName(e.target.value)}
+                id="engineer"
+                placeholder="Engineer's Name"
+                value={engineerName}
+                onChange={(e) => setEngineerName(e.target.value)}
               />
             </div>
           </div>
