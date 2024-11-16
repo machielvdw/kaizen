@@ -149,9 +149,33 @@ export default function CheckListPage() {
     },
   ]);
 
-  const handleSubmit = () => {
-    console.log("Submitted answers:", categories);
-    // Here you can handle the submission, like sending data to a server
+  const handleSubmit = async () => {
+    const feedback = {
+      reviewerName,
+      developerName,
+      categories,
+    };
+
+    try {
+      const response = await fetch("/api/submit-feedback", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(feedback),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        console.log("Data saved successfully:", result.insertedId);
+        // Optionally, reset the form or navigate to a success page
+      } else {
+        console.error("Error saving data:", result.error);
+      }
+    } catch (error) {
+      console.error("Error submitting data:", error);
+    }
   };
 
   return (
