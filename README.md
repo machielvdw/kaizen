@@ -19,3 +19,6 @@ This application provides a comprehensive checklist to assess these areas, offer
 - User-Friendly Interface: Navigate through a clean and intuitive design.
 - Built with Next.js: Leverages the power of Next.js for server-side rendering and fast performance.
 - Bookmarkable Results: Easily bookmark your personalized results page to revisit and track progress over time.
+
+## Todo:
+- Cards/Sections on results page
