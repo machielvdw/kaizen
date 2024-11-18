@@ -14,5 +14,8 @@ This application provides a comprehensive checklist to assess these areas, offer
 ## Features:
 - Interactive Checklist: Evaluate engineering practices across four critical categories.
 - Detailed Explanations: Understand each domain with in-depth descriptions and key components.
+- Results Visualization: Visualize assessment results using an interactive radar chart.
+- Detailed Feedback: Review individual scores and comments for each question and category.
 - User-Friendly Interface: Navigate through a clean and intuitive design.
 - Built with Next.js: Leverages the power of Next.js for server-side rendering and fast performance.
+- Bookmarkable Results: Easily bookmark your personalized results page to revisit and track progress over time.
