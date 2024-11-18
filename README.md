@@ -22,3 +22,4 @@ This application provides a comprehensive checklist to assess these areas, offer
 
 ## Todo:
 - Cards/Sections on results page
+- Cleanup
