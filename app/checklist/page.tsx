@@ -175,7 +175,7 @@ export default function CheckListPage() {
 
       if (response.ok && result.success) {
         console.log("Data saved successfully:", result.insertedId);
-        router.push("/results");
+        router.push(`/results?id=${result.insertedId}`);
       } else {
         console.error("Error saving data:", result.error);
         alert("There was an error submitting your feedback. Please try again.");
@@ -191,7 +191,7 @@ export default function CheckListPage() {
   return (
     <div className="min-h-screen py-8 px-72 pb-20 gap-16">
       <main className="flex flex-col gap-8 row-start-2 items-start">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl flex-auto">
+        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl flex-auto">
           Checklist
         </h1>
         <div className="w-full max-w-3xl mx-auto">

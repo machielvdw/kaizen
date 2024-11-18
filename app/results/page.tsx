@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import RadarChart from "@/components/radar-chart";
 
@@ -19,6 +19,7 @@ type Category = {
 
 export default function ResultsPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [data, setData] = useState<{
     reviewerName: string;
     engineerName: string;
@@ -26,9 +27,17 @@ export default function ResultsPage() {
   } | null>(null);
 
   useEffect(() => {
+    const id = searchParams.get("id");
+
+    if (!id) {
+      console.error("No ID provided in URL");
+      router.push("/");
+      return;
+    }
+
     const fetchData = async () => {
       try {
-        const response = await fetch("/api/get-latest-feedback");
+        const response = await fetch(`/api/get-feedback?id=${id}`);
         const result = await response.json();
         if (response.ok && result.data) {
           setData(result.data);
@@ -43,7 +52,7 @@ export default function ResultsPage() {
     };
 
     fetchData();
-  }, [router]);
+  }, [router, searchParams]);
 
   if (!data) {
     return <div>Loading...</div>;
@@ -52,12 +61,17 @@ export default function ResultsPage() {
   return (
     <div className="min-h-screen py-8 px-72 pb-20 gap-16">
       <main className="flex flex-col gap-8 row-start-2 items-start">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl flex-auto">
-          Thank you for completing the checklist!
+        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl flex-auto">
+          Results
         </h1>
+        <p className="leading-7 mt-2">
+          Thank you for completing the checklist. You can bookmark this page to
+          come back to it later.
+        </p>
         <div className="w-full max-w-3xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            Results for {data.engineerName}, by {data.reviewerName}.
+            <div>Engineer: {data.engineerName}</div>
+            <div>Reviewer: {data.reviewerName}</div>
           </div>
         </div>
         <div className="flex justify-center w-full">
@@ -71,7 +85,7 @@ export default function ResultsPage() {
             );
             const averageScore = (
               totalScore / category.questions.length
-            ).toFixed(2);
+            ).toFixed(1);
 
             return (
               <div key={category.id} className="mb-6">
