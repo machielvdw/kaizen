@@ -18,14 +18,12 @@ type RadarChartProps = {
 };
 
 export default function RadarChart({ categories }: RadarChartProps) {
-  // Prepare the radar chart indicators and data
   const indicators = categories.map((category) => ({
     name: category.title,
     max: 5,
   }));
 
   const dataValues = categories.map((category) => {
-    // Calculate the average value for each category
     const total = category.questions.reduce(
       (sum, question) => sum + question.value,
       0
@@ -52,7 +50,6 @@ export default function RadarChart({ categories }: RadarChartProps) {
     ],
   };
 
-  // Add explicit width and height to the style prop
   return (
     <ReactECharts option={option} style={{ height: "400px", width: "100%" }} />
   );

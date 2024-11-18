@@ -181,11 +181,11 @@ export default function CheckListPage() {
       } else {
         console.error("Error saving data:", result.error);
         alert("There was an error submitting your feedback. Please try again.");
+        setIsLoading(false);
       }
     } catch (error) {
       console.error("Error submitting data:", error);
       alert("An unexpected error occurred. Please try again.");
-    } finally {
       setIsLoading(false);
     }
   };
