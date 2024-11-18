@@ -1,5 +1,8 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
@@ -207,9 +210,16 @@ export default function Home() {
           reflection of the individual, the environment, and the company as a
           whole.{" "}
         </p>
-        <Button asChild className="w-full mt-6">
-          <Link href="/checklist">Get Started with the Checklist</Link>
-        </Button>
+        <motion.div
+          className="w-full mt-6"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        >
+          <Button asChild className="w-full mt-6">
+            <Link href="/checklist">Get Started with the Checklist</Link>
+          </Button>
+        </motion.div>
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"></footer>
     </div>

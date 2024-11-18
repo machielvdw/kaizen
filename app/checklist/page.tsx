@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+import { motion } from "framer-motion";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -219,13 +221,20 @@ export default function CheckListPage() {
           </div>
         </div>
         <Checklist categories={categories} setCategories={setCategories} />
-        <Button
-          onClick={handleSubmit}
-          className="w-full mt-4"
-          disabled={isLoading}
+        <motion.div
+          className="w-full mt-6"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
-          {isLoading ? "Submitting..." : "Submit"}
-        </Button>
+          <Button
+            onClick={handleSubmit}
+            className="w-full mt-4"
+            disabled={isLoading}
+          >
+            {isLoading ? "Submitting..." : "Submit"}
+          </Button>
+        </motion.div>
       </main>
     </div>
   );
