@@ -175,7 +175,7 @@ export default function CheckListPage() {
 
       if (response.ok && result.success) {
         console.log("Data saved successfully:", result.insertedId);
-        router.push("/thank-you");
+        router.push("/results");
       } else {
         console.error("Error saving data:", result.error);
         alert("There was an error submitting your feedback. Please try again.");
