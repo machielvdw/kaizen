@@ -2,6 +2,8 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+
+import SkeletonLoader from "@/components/skeleton-loader";
 import RadarChart from "@/components/radar-chart";
 
 type Question = {
@@ -55,7 +57,7 @@ export default function ResultsPage() {
   }, [router, searchParams]);
 
   if (!data) {
-    return <div>Loading...</div>;
+    return <SkeletonLoader />;
   }
 
   return (
