@@ -1,11 +1,14 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
     <div className="items-center justify-items-center min-h-screen py-8 px-72 pb-20 gap-16">
       <main className="flex flex-col gap-8 row-start-2 items-start">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl flex-auto">
+        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl flex-auto">
           Kaizen
         </h1>
         <blockquote className="mt-6 border-l-2 pl-6 italic">
@@ -13,7 +16,7 @@ export default function Home() {
           business activities that continuously improve all functions and
           involve all employees from the CEO to the assembly line workers.
         </blockquote>
-        <h2 className="mt-6 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
+        <h2 className="mt-6 border-b pb-2 text-3xl font-semibold tracking-tight">
           Background: Understanding the Key Areas of Effective Engineering
         </h2>
         <p className="leading-7 mt-2">
@@ -26,7 +29,7 @@ export default function Home() {
           skills that amplify impact in any organization. Below is an overview
           of each area and its key components.
         </p>
-        <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
+        <h3 className="mt-8 text-2xl font-semibold tracking-tight">
           1. Code Quality and Development Practices
         </h3>
         <p className="leading-7 mt-2">
@@ -70,7 +73,7 @@ export default function Home() {
             outcome-driven testing.
           </li>
         </ul>
-        <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight mt-4">
+        <h3 className="text-2xl font-semibold tracking-tight mt-4">
           2. Organizational Awareness and Navigation
         </h3>
         <p className="leading-7 mt-2">
@@ -112,7 +115,7 @@ export default function Home() {
             efficiently within constraints rather than resisting them.
           </li>
         </ul>
-        <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight mt-4">
+        <h3 className="text-2xl font-semibold tracking-tight mt-4">
           3. Strategic and Collaborative Skills
         </h3>
         <p className="leading-7 mt-2">
@@ -155,7 +158,7 @@ export default function Home() {
             projects and maintain momentum in their careers.
           </li>
         </ul>
-        <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight mt-4">
+        <h3 className="text-2xl font-semibold tracking-tight mt-4">
           4. Leadership and Accountability
         </h3>
         <p className="leading-7 mt-2">
@@ -198,7 +201,7 @@ export default function Home() {
             team dynamics.
           </li>
         </ul>
-        <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight mt-8">
+        <h2 className="border-b pb-2 text-3xl font-semibold tracking-tight mt-8">
           Next Steps
         </h2>
         <p className="leading-7 mt-2">
@@ -207,9 +210,16 @@ export default function Home() {
           reflection of the individual, the environment, and the company as a
           whole.{" "}
         </p>
-        <Button asChild className="w-full mt-6">
-          <Link href="/checklist">Get Started with the Checklist</Link>
-        </Button>
+        <motion.div
+          className="w-full mt-6"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        >
+          <Button asChild className="w-full mt-6">
+            <Link href="/checklist">Get Started with the Checklist</Link>
+          </Button>
+        </motion.div>
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"></footer>
     </div>

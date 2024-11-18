@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+import { motion } from "framer-motion";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -175,15 +177,15 @@ export default function CheckListPage() {
 
       if (response.ok && result.success) {
         console.log("Data saved successfully:", result.insertedId);
-        router.push("/thank-you");
+        router.push(`/results?id=${result.insertedId}`);
       } else {
         console.error("Error saving data:", result.error);
         alert("There was an error submitting your feedback. Please try again.");
+        setIsLoading(false);
       }
     } catch (error) {
       console.error("Error submitting data:", error);
       alert("An unexpected error occurred. Please try again.");
-    } finally {
       setIsLoading(false);
     }
   };
@@ -191,7 +193,7 @@ export default function CheckListPage() {
   return (
     <div className="min-h-screen py-8 px-72 pb-20 gap-16">
       <main className="flex flex-col gap-8 row-start-2 items-start">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl flex-auto">
+        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl flex-auto">
           Checklist
         </h1>
         <div className="w-full max-w-3xl mx-auto">
@@ -219,13 +221,20 @@ export default function CheckListPage() {
           </div>
         </div>
         <Checklist categories={categories} setCategories={setCategories} />
-        <Button
-          onClick={handleSubmit}
-          className="w-full mt-4"
-          disabled={isLoading}
+        <motion.div
+          className="w-full mt-6"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
-          {isLoading ? "Submitting..." : "Submit"}
-        </Button>
+          <Button
+            onClick={handleSubmit}
+            className="w-full mt-4"
+            disabled={isLoading}
+          >
+            {isLoading ? "Submitting..." : "Submit"}
+          </Button>
+        </motion.div>
       </main>
     </div>
   );
