@@ -9,4 +9,5 @@ export type Category = {
   title: string;
   questions: Question[];
   comment?: string;
+  timestamp: number;
 };
