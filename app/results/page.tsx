@@ -5,19 +5,14 @@ import { useEffect, useState } from "react";
 
 import SkeletonLoader from "@/components/skeleton-loader";
 import RadarChart from "@/components/radar-chart";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+} from "@/components/ui/card";
 
-type Question = {
-  id: string;
-  text: string;
-  value: number;
-};
-
-type Category = {
-  id: string;
-  title: string;
-  questions: Question[];
-  comment?: string;
-};
+import { Category } from "@/lib/types";
 
 export default function ResultsPage() {
   const router = useRouter();
@@ -26,6 +21,7 @@ export default function ResultsPage() {
     reviewerName: string;
     engineerName: string;
     categories: Category[];
+    timestamp: string;
   } | null>(null);
 
   useEffect(() => {
@@ -71,10 +67,19 @@ export default function ResultsPage() {
           come back to it later.
         </p>
         <div className="w-full max-w-3xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>Engineer: {data.engineerName}</div>
-            <div>Reviewer: {data.reviewerName}</div>
-          </div>
+          <Card>
+            <CardHeader>
+              <CardDescription>
+                {new Date(data.timestamp).toLocaleString()}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="border-r">Engineer: {data.engineerName}</div>
+                <div>Reviewer: {data.reviewerName}</div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
         <div className="flex justify-center w-full">
           <RadarChart categories={data.categories} />

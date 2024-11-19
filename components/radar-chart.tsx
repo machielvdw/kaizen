@@ -1,17 +1,6 @@
 import ReactECharts from "echarts-for-react";
 
-type Question = {
-  id: string;
-  text: string;
-  value: number;
-};
-
-type Category = {
-  id: string;
-  title: string;
-  questions: Question[];
-  comment?: string;
-};
+import { Category } from "@/lib/types";
 
 type RadarChartProps = {
   categories: Category[];
