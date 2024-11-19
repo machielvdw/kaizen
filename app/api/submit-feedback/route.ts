@@ -9,6 +9,8 @@ export async function POST(req: NextRequest) {
 
     const data = await req.json();
 
+    data.timestamp = new Date();
+
     const result = await collection.insertOne(data);
 
     return NextResponse.json({ success: true, insertedId: result.insertedId });
