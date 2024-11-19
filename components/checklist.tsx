@@ -5,18 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 
-type Question = {
-  id: string;
-  text: string;
-  value: number;
-};
-
-type Category = {
-  id: string;
-  title: string;
-  questions: Question[];
-  comment?: string;
-};
+import { Category } from "@/lib/types";
 
 type ChecklistProps = {
   categories: Category[];

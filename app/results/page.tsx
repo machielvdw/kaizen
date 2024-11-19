@@ -6,18 +6,7 @@ import { useEffect, useState } from "react";
 import SkeletonLoader from "@/components/skeleton-loader";
 import RadarChart from "@/components/radar-chart";
 
-type Question = {
-  id: string;
-  text: string;
-  value: number;
-};
-
-type Category = {
-  id: string;
-  title: string;
-  questions: Question[];
-  comment?: string;
-};
+import { Category } from "@/lib/types";
 
 export default function ResultsPage() {
   const router = useRouter();

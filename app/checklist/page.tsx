@@ -10,18 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Checklist from "@/components/checklist";
 
-type Question = {
-  id: string;
-  text: string;
-  value: number;
-};
-
-type Category = {
-  id: string;
-  title: string;
-  questions: Question[];
-  comment?: string;
-};
+import { Category } from "@/lib/types";
 
 export default function CheckListPage() {
   const router = useRouter();
