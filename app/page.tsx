@@ -65,13 +65,58 @@ export default function Home() {
         <motion.div
           className="w-full mt-6"
           whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          whileTap={{ scale: 0.99 }}
+          transition={{ type: "spring", stiffness: 100, damping: 10 }}
         >
           <Button asChild className="w-full mt-6">
             <Link href="/checklist">Get Started with the Checklist</Link>
           </Button>
         </motion.div>
+        <h2 className="border-b pb-2 text-3xl font-semibold tracking-tight mt-12">
+          Sources
+        </h2>
+        <ul className="list-disc pl-5 space-y-2 mt-4">
+          <li>
+            <a
+              href="https://newsletter.pragmaticengineer.com/p/how-to-become-a-more-effective-engineer"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              How to Become a More Effective Engineer - The Pragmatic Engineer
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://read.engineerscodex.com/p/7-simple-habits-of-the-top-1-of-engineers"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              7 Simple Habits of the Top 1% of Engineers - Engineer&apos;s Codex
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.mobilelive.ca/blog/7-essential-qualities-a-developer-must-have"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              7 Essential Qualities a Developer Must Have - MobileLIVE
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.reddit.com/r/ExperiencedDevs/comments/1ddfb38/how_exactly_do_you_define_a_good_developer/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              How exactly do you define a good developer? - r/ExperiencedDevs
+            </a>
+          </li>
+        </ul>
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"></footer>
     </div>

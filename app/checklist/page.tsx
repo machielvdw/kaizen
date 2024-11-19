@@ -90,8 +90,8 @@ export default function CheckListPage() {
         <motion.div
           className="w-full mt-6"
           whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          whileTap={{ scale: 0.99 }}
+          transition={{ type: "spring", stiffness: 100, damping: 10 }}
         >
           <Button
             onClick={handleSubmit}
