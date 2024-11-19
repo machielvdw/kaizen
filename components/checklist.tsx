@@ -1,9 +1,22 @@
 "use client";
 
+import { Info } from "lucide-react";
+
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import { Button } from "@/components/ui/button";
 
 import { Category } from "@/lib/types";
 
@@ -72,7 +85,43 @@ export default function Checklist({
         <div key={category.id} className="mb-8">
           <Card>
             <CardHeader>
-              <CardTitle>{category.title}</CardTitle>
+              <CardTitle>
+                <div className="flex justify-between">
+                  {category.title}
+                  <Drawer>
+                    <DrawerTrigger>
+                      <Info />
+                    </DrawerTrigger>
+                    <DrawerContent>
+                      <div className="px-12">
+                        <DrawerHeader>
+                          <DrawerTitle>{category.title}</DrawerTitle>
+                          <DrawerDescription>
+                            {category.description}
+                          </DrawerDescription>
+                        </DrawerHeader>
+                        <ul className="my-6 ml-6 list-disc mt-2">
+                          {category.questions.map((question) => {
+                            const [title, ...descriptionParts] =
+                              question.description.split(": ");
+                            const description = descriptionParts.join(": ");
+                            return (
+                              <li key={question.id}>
+                                <strong>{title}</strong>: {description}
+                              </li>
+                            );
+                          })}
+                        </ul>
+                        <DrawerFooter>
+                          <DrawerClose asChild>
+                            <Button variant="outline">Close</Button>
+                          </DrawerClose>
+                        </DrawerFooter>
+                      </div>
+                    </DrawerContent>
+                  </Drawer>
+                </div>
+              </CardTitle>
             </CardHeader>
             <CardContent>
               {category.questions.map((question) => (
