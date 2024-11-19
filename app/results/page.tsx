@@ -69,7 +69,9 @@ export default function ResultsPage() {
         <div className="w-full max-w-3xl mx-auto">
           <Card>
             <CardHeader>
-              <CardDescription>{data.timestamp}</CardDescription>
+              <CardDescription>
+                {new Date(data.timestamp).toLocaleString()}
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
