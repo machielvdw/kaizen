@@ -8,9 +8,9 @@ import { categories as categoriesData } from "@/data/categories";
 
 export default function Home() {
   return (
-    <div className="items-center justify-items-center min-h-screen py-8 px-72 pb-20 gap-16">
-      <main className="flex flex-col gap-8 row-start-2 items-start">
-        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl flex-auto">
+    <div className="container mx-auto min-h-screen py-8 px-4 sm:px-6 lg:px-8 pb-20">
+      <main className="flex flex-col gap-8 md:gap-16 items-start">
+        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">
           Kaizen
         </h1>
         <blockquote className="mt-6 border-l-2 pl-6 italic">
@@ -118,7 +118,7 @@ export default function Home() {
           </li>
         </ul>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"></footer>
+      <footer className="flex gap-6 flex-wrap items-center justify-center"></footer>
     </div>
   );
 }

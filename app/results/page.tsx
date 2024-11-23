@@ -57,9 +57,9 @@ export default function ResultsPage() {
   }
 
   return (
-    <div className="min-h-screen py-8 px-72 pb-20 gap-16">
-      <main className="flex flex-col gap-8 row-start-2 items-start">
-        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl flex-auto">
+    <div className="container mx-auto min-h-screen py-8 px-4 sm:px-6 lg:px-8 pb-20">
+      <main className="flex flex-col gap-8 md:gap-16 items-start">
+        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">
           Results
         </h1>
         <p className="leading-7 mt-2">
